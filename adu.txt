@@ -1,0 +1,26 @@
+int Sensor = A0;
+
+
+void setup(){
+  Serial.begin(9600);
+}
+
+void loop(){
+ 
+  Serial.print(Tempp(analogRead(Sensor)));
+  Serial.print("*"); 
+  Serial.print(analogRead(A1));
+  Serial.println("");
+ 
+  delay(1000);
+}
+
+ 
+double Tempp(int value){
+  double Temp;
+  Temp = log(10000.0/(1024.0 / value-1));
+  Temp = 1/(0.001129148+(0.000234125+(0.000000076741*Temp*Temp))*Temp);
+  Temp = Temp-293.15;
+  return Temp;
+}
+
